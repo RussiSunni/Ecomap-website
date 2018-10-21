@@ -1,28 +1,51 @@
-$(function () {
-		
-	
-	
-	var FooterTimeScript = $("#footer-time-template").html();
 
-	// Compile the template
-	var FooterTimeTemplate = Handlebars.compile(FooterTimeScript);
+var slideIndex = 1;
+showDivs(slideIndex);
 
-	// Define our data object
-	var context={
-		"footer": "123",
-		
-	};
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
 
-	// Pass our data to the template
-	var theCompiledHtmlFooter = FooterTimeTemplate(context);
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} 
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    x[slideIndex-1].style.display = "block"; 
+}
+// ------------------- from W3, for Slider --------------------------------
 
-	// Add the compiled html to the page
-	$('.footer-time-placeholder').html(theCompiledHtmlFooter);
-	
-	
+var slideIndex = 1;
+showSlides(slideIndex);
 
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-});
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1} 
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block"; 
+  dots[slideIndex-1].className += " active";
+}
 
 
 
